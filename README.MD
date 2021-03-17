@@ -53,6 +53,10 @@ Build this project as a ROS package
    rosrun se2lam test_vn PATH_TO_DatasetRoom PATH_TO_ORBvoc.bin
    ```
 
+### Output
+
+If running `test_vn`, the output is `se2lam_kf_trajectory.txt`, which is the final trajectory of keyframes. Each line contains `key_frame_id` `x` `y` `z` `yaw` (space deliminated) with units `none`, `mm`, `mm`, `mm`, `rad`. I'm pretty sure the keyframe ID is the same as the image number that created that keyframe, so if you know the timestamp of all of your images, you should know the timestamp of each line of the file.
+
 ### Dataset Format
 
 The Dataset folder has to contain:
@@ -68,7 +72,6 @@ The Dataset folder has to contain:
     - `fps`: tracking frequency (I'm assuming this is frequency in which the odom and image data was captured.)
     - `img_num`: how many images/odom lines you have.
     - `write_map_file_path` and `read_map_file_path`: make sure these are paths that exist on your machine.
-
    
 ### Related Project
 
