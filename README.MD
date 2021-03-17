@@ -52,6 +52,23 @@ Build this project as a ROS package
    ```
    rosrun se2lam test_vn PATH_TO_DatasetRoom PATH_TO_ORBvoc.bin
    ```
+
+### Dataset Format
+
+The Dataset folder has to contain:
+- `odo_raw.txt`: Odometry data with lines `x` `y` `yaw` (space deliminated) with units `mm`, `mm`, `rad`. Although not included in the file, the timestamp in which the odom data of each line of the txt file was obtained should be the same as the corresponding image in the `image` directory, i.e. line 0 of `odo_raw.txt` should be the odom data from the same timestamp in which `0.bmp` was captured.
+- `image` directory: `.bmp` gray images named by sequential 0-indexed integers, i.e. `0.bmp`, `1.bmp`, `2.bmp`...
+- `config` directory:
+  - `CamConfig.yml`: calibration information of camera that captured the images in the `image` directory.
+    - `camera matrix`: `K` matrix (camera intrinsics)
+    - `distortion_coefficients`: `D` matrix (camera intrinsics)
+    - `rvec_b_c`: rotation of camera with respect to vehicle expressed in Rodrigues angles (camera extrinsics)
+    - `tvec_b_c`: translation of camera with respect to vehicle in mm (camera extrinsics) Unclear, but I think the order is `[z, y, -x]` if from your robot, `x` points forward, `y` is left, and `z` is up.
+  - `Settings.yml`: Unclear what most of this is used for, but important params:
+    - `fps`: tracking frequency (I'm assuming this is frequency in which the odom and image data was captured.)
+    - `img_num`: how many images/odom lines you have.
+    - `write_map_file_path` and `read_map_file_path`: make sure these are paths that exist on your machine.
+
    
 ### Related Project
 
