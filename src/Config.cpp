@@ -64,7 +64,7 @@ bool Config::SAVE_NEW_MAP = false;
 std::string Config::READ_MAP_FILE_NAME;
 std::string Config::READ_MAP_FILE_PATH;
 std::string Config::WRITE_MAP_FILE_NAME = "se2lam.map";
-std::string Config::WRITE_MAP_FILE_PATH = "/home/se2lam/";
+std::string Config::WRITE_MAP_FILE_PATH = "/home/swarm/vision_ws/src/se2lam";
 
 std::string Config::WRITE_TRAJ_FILE_NAME;
 std::string Config::WRITE_TRAJ_FILE_PATH;

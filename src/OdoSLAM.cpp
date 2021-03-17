@@ -198,6 +198,7 @@ void OdoSLAM::saveMap() {
 
     // Save keyframe trajectory
     cerr << "\n# Finished. Saving keyframe trajectory ..." << endl;
+    cout << "Path: " << se2lam::Config::WRITE_MAP_FILE_PATH  + "/se2lam_kf_trajectory.txt" << endl;
     ofstream towrite(se2lam::Config::WRITE_MAP_FILE_PATH  + "/se2lam_kf_trajectory.txt");
     vector<se2lam::PtrKeyFrame> vct = mpMap->getAllKF();
     for (size_t i = 0; i<vct.size(); i++){
