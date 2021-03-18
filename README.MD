@@ -28,6 +28,24 @@ On-SE(2) Localization and Mapping for Ground Vehicles by Fusing Odometry and Vis
 
 - g2o ([2016 version](https://github.com/RainerKuemmerle/g2o/releases/tag/20160424_git))
 
+#### Installing Dependencies
+
+```bash
+# Eigen (should install version 3.3.4-4)
+sudo apt install libeigen3-dev
+
+# g2o (2016)
+git clone git@github.com:RainerKuemmerle/g2o.git
+git checkout 20160424_git
+cd g2o
+mkdir build
+cd build
+cmake ../
+sudo make install  # system-wide installation
+```
+When building `g2o `, the two warnings I got were "note: declared here
+ EIGEN_DEPRECATED const unsigned int AlignedBit = 0x8" and something about "note: forward declaratiof of class ‘class g2o::World’”. `se2lam` still ran fine but any more warnings might be concerning.
+
 ### Build
 
 Build this project as a ROS package
@@ -67,7 +85,7 @@ The Dataset folder has to contain:
     - `camera matrix`: `K` matrix (camera intrinsics)
     - `distortion_coefficients`: `D` matrix (camera intrinsics)
     - `rvec_b_c`: rotation of camera with respect to vehicle expressed in Rodrigues angles (camera extrinsics)
-    - `tvec_b_c`: translation of camera with respect to vehicle in mm (camera extrinsics) Unclear, but I think the order is `[z, y, -x]` if from your robot, `x` points forward, `y` is left, and `z` is up.
+    - `tvec_b_c`: translation of camera with respect to vehicle in mm (camera extrinsics)
   - `Settings.yml`: Unclear what most of this is used for, but important params:
     - `fps`: tracking frequency (I'm assuming this is frequency in which the odom and image data was captured.)
     - `img_num`: how many images/odom lines you have.
